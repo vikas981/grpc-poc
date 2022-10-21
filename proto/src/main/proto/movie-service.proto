@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "common/common.proto";
+option java_multiple_files = true;
+option java_package = "com.viksingh.grpcpoc.movie";
+
+
+
+message MovieDto{
+  string name = 1 ;
+  string rating = 2;
+  string genre = 3;
+  int32 releaseYear = 4;
+  string released = 5;
+  double score = 6;
+  int64 votes = 7;
+  string director = 8;
+  string writer = 9;
+  string star = 10;
+  string country = 11;
+  int64 budget = 12;
+  int64 gross = 13;
+  string company = 14;
+  int64 runtime = 15;
+}
+
+message MovieSearchRequest{
+  common.Genre genre = 1;
+}
+
+message MovieSearchResponse{
+  repeated MovieDto movie = 1;
+}
+
+service MovieService{
+  rpc getMovies(MovieSearchRequest) returns (MovieSearchResponse);
+}
